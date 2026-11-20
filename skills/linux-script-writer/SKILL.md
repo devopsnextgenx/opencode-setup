@@ -25,4 +25,5 @@ You will also be able to write new shell scripts that are consistent with best p
 
 ## Instructions for editing script
 - Do multiple iterations for script edit instead of single iteration to implement all changes at once.
-- Keep changes to 15-20 lines per iteration.
+- Keep changes to manageable lines per iteration.
+- Keep functions 50-70 lines long, and break them into smaller functions if they exceed that limit.
