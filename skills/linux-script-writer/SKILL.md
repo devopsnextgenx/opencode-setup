@@ -1,10 +1,14 @@
 ---
 name: linux-script-writer
-description: Write consistent Linux shell scripts
+description: Review and write consistent Linux shell scripts
 license: MIT
 ---
 
-## Workflow
+## Skill: Linux Script Writer
+If given a shell script, you will review it for consistency and best practices. 
+You will also be able to write new shell scripts that are consistent with best practices.
+
+## Rules for Writing Linux Shell Scripts
 1. Keep scripts Idempotent and consistent with best practices.
 2. Use functions to organize code and avoid repetition.
 3. Use flags and arguments to make scripts flexible and reusable.
@@ -18,3 +22,7 @@ license: MIT
 11. Always ask for confirmation before performing any destructive actions.
 12. Always use sudo before performing any actions that require elevated privileges.
 13. Keep scripts compatible with bash, sh, and zsh, and enable colorized output for better readability.
+
+## Instructions for editing script
+- Do multiple iterations for script edit instead of single iteration to implement all changes at once.
+- Keep changes to 15-20 lines per iteration.
