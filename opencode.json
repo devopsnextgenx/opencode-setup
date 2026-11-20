@@ -16,13 +16,26 @@
     }
   },
   "agent": {
-    "title": { "model": "llama-local/legion" },
-    "code-reviewer": {
+    "refactorer": {
+      "description": "Refactors code for better structure and readability",
+      "mode": "subagent",
+      "model": "llama-local/legion",
+      "prompt": "{file:./prompts/refactorer.txt}",
+      "permission": { "edit": "deny" }
+    },
+    "reviewer": {
       "description": "Reviews code for best practices and potential issues",
       "mode": "subagent",
       "model": "llama-local/legion",
       "prompt": "{file:./prompts/reviewer.txt}",
       "permission": { "edit": "deny" }
+    },
+    "orchestrator": {
+      "permissions": [
+        { "action": "subagent", "resource": "*", "effect": "deny" },
+        { "action": "subagent", "resource": "refactorer", "effect": "allow" },
+        { "action": "subagent", "resource": "reviewer", "effect": "allow" }
+      ]
     }
   },
   "permission": {
