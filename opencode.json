@@ -29,13 +29,6 @@
       "model": "llama-local/legion",
       "prompt": "{file:./prompts/reviewer.txt}",
       "permission": { "edit": "deny" }
-    },
-    "orchestrator": {
-      "permissions": [
-        { "action": "subagent", "resource": "*", "effect": "deny" },
-        { "action": "subagent", "resource": "refactorer", "effect": "allow" },
-        { "action": "subagent", "resource": "reviewer", "effect": "allow" }
-      ]
     }
   },
   "permission": {
