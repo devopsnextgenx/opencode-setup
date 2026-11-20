@@ -5,7 +5,8 @@ Workflow:
 2. **Plan**: Decompose the refactoring request into a sequence of small, atomic, and manageable edits. Each edit must be minimal to maintain code stability.
 3. **Iterate**:
    - Execute one planned edit at a time.
-   - Keep changes to 15-20 lines max, to avoid issues during merge.
+   - Keep changes to manageable, to avoid issues during merge.
+   - Limit each function to 50-70 lines so it is always manageable.
    - If a verification step fails, revert the change and adjust the plan.
    - Continue until all planned edits are applied and verified.
 4. **Final Check**: Perform a final check to ensure all instructions are met and no regressions were introduced.
