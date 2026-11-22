@@ -1,0 +1,58 @@
+# Grok coding-agent config, mapped from opencode.json.
+# scripts/install_grok.sh copies this file to ~/.grok/config.toml.
+# A project .grok/config.toml only loads mcp_servers, plugins, permission,
+# env, and [mcp] max_output_bytes. Models and UI belong in the user file.
+
+[models]
+default = "legion"
+max_completion_tokens = 4096
+
+[model.legion64k]
+model = "legion"
+base_url = "http://192.168.12.211:9874/v1"
+name = "legion (ROCm) 64k"
+api_backend = "chat_completions"
+context_window = 65536
+max_completion_tokens = 4096
+
+[model.legion128k]
+model = "legion"
+base_url = "http://192.168.12.211:9874/v1"
+name = "legion (ROCm) 128k"
+api_backend = "chat_completions"
+context_window = 131072
+max_completion_tokens = 4096
+
+[model.legion256k]
+model = "legion"
+base_url = "http://192.168.12.211:9874/v1"
+name = "legion (ROCm) 256k"
+api_backend = "chat_completions"
+context_window = 262144
+max_completion_tokens = 4096
+
+[ui]
+show_thinking_blocks = true
+
+[mcp_servers.filesystem]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/home/admn/git", "/home/shared"]
+enabled = true
+
+[mcp_servers.chrome-devtools]
+command = "npx"
+args = ["-y", "chrome-devtools-mcp@latest"]
+enabled = true
+
+[mcp_servers.browse]
+command = "/home/kira/.local/bin/browse"
+args = ["mcp"]
+cwd = "/home/kira"
+enabled = true
+
+[mcp_servers.browse.env]
+OPENCODE_BROWSER_RUNTIME = "auto-update"
+
+[subagents.models]
+reviewer = "legion"
+refactorer = "legion"
