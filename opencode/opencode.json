@@ -19,19 +19,16 @@
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
       "enabled": true
     },
-    "servers": {
-      "browse": {
-        "type": "local",
-        "command": [
-          "/home/kira/.local/bin/browse",
-          "mcp"
-        ],
-        "cwd": "/home/kira",
-        "pool": true,
-        "environment": {
-          "OPENCODE_BROWSER_RUNTIME": "auto-update"
-        }
-      }
+    "browse": {
+      "type": "local",
+      "command": [
+        "/home/kira/.local/bin/browse",
+        "mcp"
+      ],
+      "environment": {
+        "OPENCODE_BROWSER_RUNTIME": "auto-update"
+      },
+      "enabled": true
     }
   },
   "agent": {
@@ -48,6 +45,48 @@
       "model": "llama-local/legion",
       "prompt": "{file:./prompts/reviewer.txt}",
       "permission": { "edit": "deny" }
+    },
+    "novelist": {
+      "description": "Orchestrates writing a multi-chapter novel from novel.spec.yml using the novel-writer skill",
+      "mode": "primary",
+      "model": "llama-local/legion128k",
+      "temperature": 0.7,
+      "prompt": "{file:./prompts/novelist.txt}",
+      "tools": { "task": true },
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "skill": { "novel-writer": "allow" },
+        "task": {
+          "*": "deny",
+          "plot-agent": "allow",
+          "chapter-writer": "allow"
+        }
+      }
+    },
+    "plot-agent": {
+      "description": "Generates the chapter-by-chapter plot outline for a novel from novel.spec.yml",
+      "mode": "subagent",
+      "model": "llama-local/legion128k",
+      "temperature": 0.8,
+      "prompt": "{file:./prompts/plot-agent.txt}",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "skill": { "novel-writer": "allow" }
+      }
+    },
+    "chapter-writer": {
+      "description": "Writes one chapter of the novel from the outline and story bible, in parts, hitting the target word count",
+      "mode": "subagent",
+      "model": "llama-local/legion128k",
+      "temperature": 0.9,
+      "prompt": "{file:./prompts/chapter-writer.txt}",
+      "permission": {
+        "edit": "allow",
+        "bash": "allow",
+        "skill": { "novel-writer": "allow" }
+      }
     }
   },
   "permission": {
