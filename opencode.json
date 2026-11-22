@@ -18,6 +18,20 @@
       "type": "local",
       "command": ["npx", "-y", "chrome-devtools-mcp@latest"],
       "enabled": true
+    },
+    "servers": {
+      "browse": {
+        "type": "local",
+        "command": [
+          "/home/kira/.local/bin/browse",
+          "mcp"
+        ],
+        "cwd": "/home/kira",
+        "pool": true,
+        "environment": {
+          "OPENCODE_BROWSER_RUNTIME": "auto-update"
+        }
+      }
     }
   },
   "agent": {

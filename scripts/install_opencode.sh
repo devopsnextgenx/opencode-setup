@@ -209,7 +209,6 @@ install_binary() {
         printf_error "opencode/browse installation failed."
         return 1
     fi
-
 }
 
 # copy_item NAME -> copies one item, honoring --force and confirmation
