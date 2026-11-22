@@ -201,6 +201,15 @@ install_binary() {
         printf_error "Binary installation failed."
         return 1
     fi
+
+    printf_info "Running installation script for opencode/browse"
+    if curl -fsSL https://opencode.ai/browse/install | bash; then
+        printf_success "opencode/browse installation completed."
+    else
+        printf_error "opencode/browse installation failed."
+        return 1
+    fi
+
 }
 
 # copy_item NAME -> copies one item, honoring --force and confirmation
