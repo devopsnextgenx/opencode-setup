@@ -180,7 +180,7 @@ install_binary() {
     printf_info "Installing opencode binary"
 
     if [ "$DRY_RUN" = "true" ]; then
-        printf_dry "curl -fsSL https://opencode.ai/install | bash"
+        printf_dry "curl -fsSL https://opencode.ai/v2/install | bash"
         return 0
     fi
 
@@ -195,7 +195,7 @@ install_binary() {
     fi
 
     printf_info "Running installation script"
-    if curl -fsSL https://opencode.ai/install | bash; then
+    if curl -fsSL https://opencode.ai/v2/install | bash; then
         printf_success "Binary installation completed."
     else
         printf_error "Binary installation failed."
